@@ -1,37 +1,27 @@
 <?php
 
-	$form_vars = array();
-	
-	$form_vars['id'] = 'contact_form';
-	$form_vars['class'] = 'elgg-form-alt';
-
-	$body_vars = elgg_get_sticky_values('contact_form');
-	
-	if(elgg_is_logged_in())
-	{
-		$user = elgg_get_logged_in_user_entity();
 		
-		$body_vars['name'] = $user->name;
-		$body_vars['mail'] = $user->email;
-	}
+	$title_text = elgg_echo("contact:title");
 	
-	$body_vars['foot'] = 'test';
+	// make breadcrumb
+	elgg_push_breadcrumb($title_text);
 	
-	$plugin_setting_contact_description = elgg_get_plugin_setting('contact_description', 'contact');
-	$plugin_setting_contact_sidebar_description = elgg_get_plugin_setting('contact_sidebar_description', 'contact');
+	// prepare form
+	$form_vars = array(
+		"id" => "contact_form",
+		"class" => "elgg-form-alt"
+	);
+	$content = elgg_view_form("contact/send", $form_vars);
 	
-	$title = elgg_echo('contact:title');
-	
-	$content = elgg_view('output/longtext', array('value' => $plugin_setting_contact_description)) . '<br />';
-	$content .= elgg_view_form('contact/send', $form_vars, $body_vars);	
-	
-	$sidebar = elgg_view('output/longtext', array('value' => $plugin_setting_contact_sidebar_description));
+	$sidebar = elgg_view("contact/sidebar");
 
-	$params['title'] = $title;
-	$params['content'] = $content;
-	$params['sidebar'] = $sidebar;
-	$params['filter'] = '';
+	// build page
+	$page_data = elgg_view_layout("content", array(
+		"title" => $title_text,
+		"content" => $content,
+		"sidebar" => $sidebar,
+		"filter" => ""
+	));
 	
-	$body = elgg_view_layout('content', $params);
-
-	echo elgg_view_page($title, $body);
+	// draw page
+	echo elgg_view_page($title_text, $page_data);

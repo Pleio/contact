@@ -13,5 +13,11 @@
 		<version>1.8</version>
 	</requires>
 	
+	<suggests>
+		<type>plugin</type>
+		<name>html_email_handler</name>
+		<version>2.2</version>
+	</suggests>
+	
 	<category>ColdTrick</category>
 </plugin_manifest>

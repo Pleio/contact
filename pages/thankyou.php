@@ -1,17 +1,27 @@
 <?php
 	
-	$plugin_setting_thankyou_title = elgg_get_plugin_setting('thankyou_title', 'contact');
-	$plugin_setting_thankyou_text = elgg_get_plugin_setting('thankyou_text', 'contact');
-	$plugin_setting_contact_sidebar_description = elgg_get_plugin_setting('contact_sidebar_description', 'contact');
+	// default title
+	$title_text = elgg_echo("contact:thankyou:title");
 	
-	$content = elgg_view('output/longtext', array('value' => $plugin_setting_thankyou_text));	
-	$sidebar = elgg_view('output/longtext', array('value' => $plugin_setting_contact_sidebar_description));
+	// add breadcrumb
+	elgg_push_breadcrumb(elgg_echo("contact:title"), "contact");
+	elgg_push_breadcrumb($title_text);
 
-	$params['title'] = $plugin_setting_thankyou_title;
-	$params['content'] = $content;
-	$params['sidebar'] = $sidebar;
-	$params['filter'] = '';
+	// get page elements
+	if ($title = elgg_get_plugin_setting("thankyou_title", "contact")) {
+		$title_text = $title;
+	}
 	
-	$body = elgg_view_layout('content', $params);
+	$content = elgg_view("contact/thankyou");
+	$sidebar = elgg_view("contact/sidebar");
 
-	echo elgg_view_page($title, $body);
+	// build page
+	$page_data = elgg_view_layout("content", array(
+		"title" => $title_text,
+		"content" => $content,
+		"sidebar" => $sidebar,
+		"filter" => ""
+	));
+	
+	// draw page
+	echo elgg_view_page($title_text, $page_data);

@@ -1,97 +1,52 @@
 <?php
-/**
- * Edit actie form
- *
- * @package actie
- */
 
-$send_button = elgg_view('input/submit', array(
-	'value' => elgg_echo('send'),
-	'name' => 'send',
-));
+	if ($user = elgg_get_logged_in_user_entity()) {
+		$name = elgg_get_sticky_value("contact_form", "name", $user->name);
+		$email = elgg_get_sticky_value("contact_form", "email", $user->email);
+	} else {
+		$name = elgg_get_sticky_value("contact_form", "name");
+		$email = elgg_get_sticky_value("contact_form", "email");
+	}
+	
+	$subject = elgg_get_sticky_value("contact_form", "subject");
+	$message = elgg_get_sticky_value("contact_form", "message");
+	$cc = elgg_get_sticky_value("contact_form", "cc");
+	
+	elgg_clear_sticky_form("contact_form");
+	
+	if ($description = elgg_get_plugin_setting("contact_description", "contact")) {
+		echo elgg_view("output/longtext", array("value" => $description));
+	}
 
-$name_label = elgg_echo('contact:form:name:label');
-$name_input = elgg_view('input/text', array(
-	'name' => 'name',
-	'id' => 'contact_name',
-	'class' => 'contact_required',
-	'value' => $vars['name']
-));
-
-$mail_label = elgg_echo('email');
-$mail_input = elgg_view('input/text', array(
-	'name' => 'mail',
-	'id' => 'contact_mail',
-	'class' => 'contact_required',
-	'value' => $vars['mail']
-));
-
-$subject_label = elgg_echo('contact:form:subject:label');
-$subject_input = elgg_view('input/text', array(
-	'name' => 'subject',
-	'id' => 'contact_subject',
-	'value' => $vars['subject']
-));
-
-$message_label = elgg_echo('contact:form:message:label');
-$message_input = elgg_view('input/plaintext', array(
-	'name' => 'message',
-	'id' => 'contact_message',
-	'class' => 'contact_required',
-	'value' => $vars['message']
-));
-
-$cc_label = elgg_echo('contact:form:cc:label');
-$cc_input = elgg_view('input/checkboxes', array(
-	'name' => 'cc',
-	'id' => 'contact_cc',
-	'value' => $vars['cc'],
-	'options' => array($cc_label => 1)
-));
-
-if(elgg_is_active_plugin('image_captcha'))
-{
-	$captcha_input = elgg_view('input/captcha');
-}
-
-$required_text = elgg_echo('contact:form:required_fields:label');
-
-echo <<<___HTML
-
-<div>
-	<label for="contact_name">$name_label *:</label>
-	$name_input
-	<div class="contact-field-error" id="contact_name_error"></div>
-</div>
-
-<div>
-	<label for="contact_mail">$mail_label *:</label>
-	$mail_input
-	<div class="contact-field-error" id="contact_mail_error"></div>
-</div>
-
-<div>
-	<label for="contact_phone">$subject_label:</label>
-	$subject_input
-</div>
-
-<div>
-	<label for="contact_message">$message_label *:</label>
-	$message_input
-	<div class="contact-field-error" id="contact_message_error"></div>
-</div>
-
-<div>
-	$cc_input	
-</div>
-
-<div>
-	$captcha_input
-</div>
-
-<div class="elgg-foot">
-	<label>$required_text</label><br /><br />
-	$send_button
-</div>
-
-___HTML;
+	echo "<div>";
+	echo "<label for='contact_name'>" . elgg_echo("contact:form:name:label") . " *</label>";
+	echo elgg_view("input/text", array("name" => "name", "rel" => "required", "id" => "contact_name", "value" => $name));
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<label for='contact_email'>" . elgg_echo("contact:form:email:label") . " *</label>";
+	echo elgg_view("input/email", array("name" => "email", "rel" => "required", "id" => "contact_email", "value" => $email));
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<label for='contact_subject'>" . elgg_echo("contact:form:subject:label") . "</label>";
+	echo elgg_view("input/email", array("name" => "subject", "id" => "contact_subject", "value" => $subject));
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<label for='contact_message'>" . elgg_echo("contact:form:message:label") . " *</label>";
+	echo elgg_view("input/longtext", array("name" => "message", "rel" => "required", "id" => "contact_message", "value" => $message));
+	echo "</div>";
+	
+	echo "<div>";
+	echo "<label for='contact_cc' class='hidden'>" . elgg_echo("contact:form:cc:label") . "</label>";
+	echo elgg_view("input/checkboxes", array("name" => "cc", "id" => "contact_cc", "value" => $cc, "options" => array(elgg_echo("contact:form:cc:label") => 1)));
+	echo "</div>";
+	
+	echo elgg_view("input/captcha");
+	
+	echo "<div class='elgg-foot'>";
+	echo elgg_view("input/submit", array("value" => elgg_echo("send"), "class" => "elgg-button-submit mbm"));
+	echo "<div class='elgg-subtext'>" . elgg_echo("contact:form:required_fields:label") . "</div>";
+	echo "</div>";
+	

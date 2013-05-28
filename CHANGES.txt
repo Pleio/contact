@@ -1,4 +1,9 @@
 = Version History =
+
+x.x:
+
+- changed: updated the the plugin for better Elgg compatibility
+
 1.1 (2012-02-01)
 
 - added: captcha
