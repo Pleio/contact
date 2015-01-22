@@ -1,15 +1,25 @@
 <?php
+/**
+ * All page handlers are bundled here
+ */
 
-	function contact_page_handler($page) {
-		
-		switch ($page[0]) {
-			case "thankyou":
-				include(dirname(dirname(__FILE__)) . "/pages/thankyou.php");
-				break;
-			default:
-				include(dirname(dirname(__FILE__)) . "/pages/contact.php");
-				break;
-		}
+/**
+ * The contact page handler
+ *
+ * @param array $page url segments
+ *
+ * @return bool
+ */
+function contact_page_handler($page) {
 	
-		return true;
+	switch ($page[0]) {
+		case "thankyou":
+			include(dirname(dirname(__FILE__)) . "/pages/thankyou.php");
+			break;
+		default:
+			include(dirname(dirname(__FILE__)) . "/pages/contact.php");
+			break;
 	}
+
+	return true;
+}

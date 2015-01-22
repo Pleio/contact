@@ -1,4 +1,5 @@
-<?php ?>
+<?php
+?>
 //<script>
 elgg.provide('elgg.contact');
 

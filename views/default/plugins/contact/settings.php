@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-$plugin = $vars["entity"]; 
+$plugin = $vars["entity"];
 
 $wg_contact_options = array('no' => elgg_echo('option:no'), 'yes' => elgg_echo('option:yes'));
 
