@@ -20,22 +20,22 @@ if ($description = elgg_get_plugin_setting("contact_description", "contact")) {
 
 echo "<div>";
 echo "<label for='contact_name'>" . elgg_echo("contact:form:name:label") . " *</label>";
-echo elgg_view("input/text", array("name" => "name", "rel" => "required", "id" => "contact_name", "value" => $name));
+echo elgg_view("input/text", array("name" => "name", "required" => true, "id" => "contact_name", "value" => $name));
 echo "</div>";
 
 echo "<div>";
 echo "<label for='contact_email'>" . elgg_echo("contact:form:email:label") . " *</label>";
-echo elgg_view("input/email", array("name" => "email", "rel" => "required", "id" => "contact_email", "value" => $email));
+echo elgg_view("input/email", array("name" => "email", "required" => true, "id" => "contact_email", "value" => $email));
 echo "</div>";
 
 echo "<div>";
 echo "<label for='contact_subject'>" . elgg_echo("contact:form:subject:label") . "</label>";
-echo elgg_view("input/email", array("name" => "subject", "id" => "contact_subject", "value" => $subject));
+echo elgg_view("input/text", array("name" => "subject", "id" => "contact_subject", "value" => $subject));
 echo "</div>";
 
 echo "<div>";
 echo "<label for='contact_message'>" . elgg_echo("contact:form:message:label") . " *</label>";
-echo elgg_view("input/longtext", array("name" => "message", "rel" => "required", "id" => "contact_message", "value" => $message));
+echo elgg_view("input/longtext", array("name" => "message", "required" => true, "id" => "contact_message", "value" => $message));
 echo "</div>";
 
 echo "<div>";

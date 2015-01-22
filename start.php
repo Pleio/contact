@@ -12,10 +12,7 @@ elgg_register_event_handler("init", "system", "contact_init");
  * @return void
  */
 function contact_init() {
-	// extend CSS / JS
-	elgg_extend_view("css/elgg", "css/contact/site");
-	elgg_extend_view("js/elgg", "js/contact/site");
-
+	
 	// register page handler for nice URL's
 	elgg_register_page_handler("contact", "contact_page_handler");
 

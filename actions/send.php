@@ -19,7 +19,7 @@ foreach ($required_fields as $required_name) {
 	if (!get_input($required_name)) {
 		$error = true;
 		
-		register_error(elgg_echo("NotificationException:MissingParameter", array(elgg_echo("contact:form:" . $required_name . ":label"))));
+		register_error(elgg_echo("error:missing_data"));
 	} elseif (($required_name == "email") && !is_email_address($email)) {
 		$error = true;
 		
