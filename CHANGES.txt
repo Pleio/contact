@@ -1,8 +1,9 @@
 = Version History =
 
-x.x:
+1.2 (2015-01-22):
 
 - changed: updated the the plugin for better Elgg compatibility
+- applied Elgg coding standards
 
 1.1 (2012-02-01)
 
