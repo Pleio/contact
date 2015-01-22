@@ -1,0 +1,14 @@
+{
+	"name": "coldtrick/contact",
+	"description": "Add a contact form to your website",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin"],
+	"license": "GPL-2.0",
+	"support": {
+		"source": "https://github.com/ColdTrick/contact",
+		"issues": "https://github.com/ColdTrick/contact/issues"
+	},
+	"require": {
+		"composer/installers": "^1.0.8"
+	}
+}
