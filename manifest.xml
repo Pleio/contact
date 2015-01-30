@@ -16,6 +16,11 @@
 		<version>1.9</version>
 	</requires>
 	
+	<requires>
+		<type>php_version</type>
+		<version>5.3</version>
+	</requires>
+	
 	<suggests>
 		<type>plugin</type>
 		<name>html_email_handler</name>

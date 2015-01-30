@@ -2,6 +2,7 @@ Contact
 =======
 
 [![Build Status](https://scrutinizer-ci.com/g/ColdTrick/contact/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/contact/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/contact/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/contact/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/contact/v/stable.svg)](https://packagist.org/packages/coldtrick/contact)
 [![License](https://poser.pugx.org/coldtrick/contact/license.svg)](https://packagist.org/packages/coldtrick/contact)
 
